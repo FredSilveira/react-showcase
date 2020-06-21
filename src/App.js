@@ -3,27 +3,19 @@ import './App.css';
 
 
 class App extends Component {
-
   constructor() {
     super();
 
     this.state = {
-      peeps: [
-        {
-          name: 'Fred',
-          id: '1'
-        },
-        {
-          name: 'Fran',
-          id: '2'
-        },
-        {
-          name: 'FredFran',
-          id: '3'
-        }
-      ]
+      peeps: []
     };
-  };
+  }
+
+  componentDidMount() {
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then(response => response.json())
+      .then(users => this.setState({ peeps: users }));
+  }
 
   render() {
     return (
