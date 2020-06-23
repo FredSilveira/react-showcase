@@ -9,7 +9,7 @@ class App extends Component {
 
     this.state = {
       peeps: [],
-      search: ''
+      searchField: ''
     };
   }
 
@@ -20,12 +20,15 @@ class App extends Component {
   }
 
   render() {
+    const { peeps, searchField } = this.state;
+    const filteredPeeps = peeps.filter( peep => peep.name.toLowerCase().includes(searchField.toLowerCase()))
+
     return (
       <div className="App">
         <input type="search" placeholder="search strange peeps" onChange={e => {
-          this.setState({ search: e.target.value });
+          this.setState({ searchField: e.target.value });
         }} />
-        <CardList peeps={this.state.peeps}/>
+        <CardList peeps={filteredPeeps}/>
       </div>
     );
   }
