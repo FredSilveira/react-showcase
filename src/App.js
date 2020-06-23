@@ -8,7 +8,8 @@ class App extends Component {
     super();
 
     this.state = {
-      peeps: []
+      peeps: [],
+      search: ''
     };
   }
 
@@ -21,6 +22,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <input type="search" placeholder="search strange peeps" onChange={e => {
+          this.setState({ search: e.target.value });
+        }} />
         <CardList peeps={this.state.peeps}/>
       </div>
     );
