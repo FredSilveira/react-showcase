@@ -19,13 +19,19 @@ class App extends Component {
       .then(users => this.setState({ peeps: users }));
   }
 
+  handleChange = (e) => {
+      this.setState({ searchField: e.target.value })
+  }
+
   render() {
     const { peeps, searchField } = this.state;
     const filteredPeeps = peeps.filter( peep => peep.name.toLowerCase().includes(searchField.toLowerCase()))
 
     return (
       <div className="App">
-        <SearchBox placeholder={"search strange peeps"} handleChange={e => this.setState({ searchField: e.target.value })} />
+        <SearchBox
+          placeholder={"search strange peeps"}
+          handleChange={ this.handleChange } />
         <CardList peeps={filteredPeeps}/>
       </div>
     );
